@@ -1,14 +1,14 @@
 ### Install
 
-1.download project folder
+1.Download project folder
 
-2.download node js [this link](https://nodejs.org/en/)
+2.Download node js [this link](https://nodejs.org/en/)
 
-3.install gulp global
+3.Install gulp global
 
 npm i gulp -g
 
-4.command prompt from root folder project
+4.Command prompt from root folder project
 
 npm i
 
@@ -18,19 +18,19 @@ gulp
 
 ###Update package
 
-//установка:
+1. Install:
 
 npm i -g npm-check-updates
 
 ---
 
-//проверка:
+2. Check:
 
 ncu
 
 ---
 
-//обновление:
+3. Update:
 
 ncu u
 
