@@ -18,19 +18,19 @@ gulp
 
 ###Update package
 
-1. Install:
+1.Install:
 
 npm i -g npm-check-updates
 
 ---
 
-2. Check:
+2.Check:
 
 ncu
 
 ---
 
-3. Update:
+3.Update:
 
 ncu u
 
