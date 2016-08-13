@@ -14,7 +14,7 @@ npm i
 
 gulp
 
-
+---
 
 ###Update package
 
@@ -22,13 +22,9 @@ gulp
 
 npm i -g npm-check-updates
 
----
-
 2.Check:
 
 ncu
-
----
 
 3.Update:
 
