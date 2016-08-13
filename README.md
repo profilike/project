@@ -1,14 +1,14 @@
-### install
+### Install
 
-download project folder
+1.download project folder
 
-download node js [this link](https://nodejs.org/en/)
+2.download node js [this link](https://nodejs.org/en/)
 
-//install gulp global
+3.install gulp global
 
 npm i gulp -g
 
-//command prompt from root folder project
+4.command prompt from root folder project
 
 npm i
 
