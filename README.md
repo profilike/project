@@ -1,15 +1,15 @@
 ###Update package
 
-//установка
+//установка:
 npm i -g npm-check-updates
 
 ---
 
-//проверка
+//проверка:
 ncu
 
 ---
 
-//обновление
+//обновление:
 ncu u
 npm i gulp-namepackage
