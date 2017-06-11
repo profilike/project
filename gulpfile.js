@@ -28,8 +28,8 @@ gulp.task('sass', function () {
 	return gulp.src('app/sass/*.+(scss|sass)')
 	//return gulp.src(['!app/sass/main.sass','app/sass/**/*.sass']))
 	.pipe(sass({
-		includePaths: require('bourbon').includePaths
-	}).on('error', sass.logError))
+		outputStyle: 'expand'
+	}).on('error', notify.onError()))
 	.pipe(autoprefixer(['last 15 versions'], {cascade: true}))
 	.pipe(gulp.dest('app/css'))
 	.pipe(browserSync.reload({stream: true}))
