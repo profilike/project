@@ -24,7 +24,7 @@ npm i -g npm-check-updates
 
 2.Check:
 
-ncu
+ncu --loglevel verbose --packageFile package.json
 
 3.Update:
 

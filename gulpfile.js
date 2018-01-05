@@ -4,17 +4,18 @@ var gulp         = require('gulp'),
 	 autoprefixer = require('gulp-autoprefixer'),
 	 cssnano      = require('gulp-cssnano'),
 	 rename       = require('gulp-rename'),
-	 uglify       = require('gulp-uglifyjs'),
+	 uglify       = require('gulp-uglify'),
 	 concat       = require('gulp-concat'),
 	 imagemin     = require('gulp-imagemin'),
-    pngquant     = require('imagemin-pngquant'),
+    pngquant     =  require('imagemin-pngquant'),
 	 cache        = require('gulp-cache'),
 	 del          = require('del'),
 	 browserSync  = require('browser-sync').create(),
+	 notify         = require("gulp-notify"),
 	 ftp          = require('vinyl-ftp');
 	
 
-gulp.task('browser-sync', ['sass', 'csslibs', 'scripts'], function() {
+gulp.task('browser-sync', ['sass', 'scripts'], function() {
 	browserSync.init({
 		//proxy: "http://project/",
 		server: {
@@ -26,7 +27,6 @@ gulp.task('browser-sync', ['sass', 'csslibs', 'scripts'], function() {
 
 gulp.task('sass', function () {
 	return gulp.src('app/sass/*.+(scss|sass)')
-	//return gulp.src(['!app/sass/main.sass','app/sass/**/*.sass']))
 	.pipe(sass({
 		outputStyle: 'expand'
 	}).on('error', notify.onError()))
@@ -35,20 +35,13 @@ gulp.task('sass', function () {
 	.pipe(browserSync.reload({stream: true}))
 });
 
-gulp.task('csslibs',['sass'], function(){
-   return gulp.src('app/css/libs.css')
-   .pipe(cssnano())
-   .pipe(rename({suffix: ".min"}))
-   .pipe(gulp.dest('app/css'));
-});
-
 gulp.task('scripts', function() {
 	return gulp.src([
 		'./app/libs/modernizr/modernizr.js',
-		'./app/libs/jquery/jquery-1.11.2.min.js'
+		'./app/libs/jquery/jquery-3.1.1.min.js'
 		])
 		.pipe(concat('libs.js'))
-		.pipe(uglify()) //Minify libs.js
+		//.pipe(uglify())
 		.pipe(gulp.dest('./app/js/'));
 });
 
@@ -68,6 +61,13 @@ gulp.task('default', ['browser-sync', 'watch']);
 
 gulp.task('removedist', function() { return del.sync('dist'); });
 
+gulp.task('csslibs', function(){
+   return gulp.src('app/css/libs.css')
+   .pipe(cssnano())
+   .pipe(rename({suffix: ".min"}))
+   .pipe(gulp.dest('app/css'));
+});
+
 gulp.task('imgmin', function(){
    return gulp.src('app/img/**/*')
    .pipe(cache(imagemin({
@@ -79,7 +79,7 @@ gulp.task('imgmin', function(){
    .pipe(gulp.dest('dist/img'));
 });
 
-gulp.task('build',['removedist', 'imgmin', 'sass', 'scripts' ], function(){
+gulp.task('build',['removedist', 'imgmin', 'sass', 'csslibs', 'scripts' ], function(){
 
 	var buildhtml = gulp.src([
 		'app/*.html',
