@@ -1,0 +1,28 @@
+@mixin bp-large {
+    @media only screen and (max-width: 60em) {
+      @content;
+    }
+  }
+  
+  @mixin bp-medium {
+    @media only screen and (max-width: 40em) {
+      @content;
+    }
+  }
+  
+  @mixin bp-small {
+    @media only screen and (max-width: 30em) {
+      @content;
+    }
+ }
+/*usage
+ .sidebar {
+    width: 60%;
+    float: left;
+    margin: 0 2% 0 0;
+    @include bp-small {
+      width: 100%;
+      float: none;
+      margin: 0;
+    }
+  }

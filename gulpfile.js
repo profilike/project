@@ -1,3 +1,7 @@
+//******************************
+// INCLUDE PLUGINS
+//******************************
+
 var gulp         = require('gulp'),
 	 gutil        = require('gulp-util' ),
 	 sass         = require('gulp-sass'),
@@ -13,7 +17,10 @@ var gulp         = require('gulp'),
 	 browserSync  = require('browser-sync').create(),
 	 notify         = require("gulp-notify"),
 	 ftp          = require('vinyl-ftp');
-	
+
+//******************************
+// DEVELOPMENT
+//******************************
 
 gulp.task('browser-sync', ['sass', 'scripts'], function() {
 	browserSync.init({
@@ -38,7 +45,8 @@ gulp.task('sass', function () {
 gulp.task('scripts', function() {
 	return gulp.src([
 		'./app/libs/modernizr/modernizr.js',
-		'./app/libs/jquery/jquery-3.1.1.min.js'
+		'./app/libs/jquery/jquery-3.1.1.min.js',
+		'./app/libs/IsJs/is.min.js'
 		])
 		.pipe(concat('libs.js'))
 		//.pipe(uglify())
@@ -56,7 +64,7 @@ gulp.task('watch', function () {
 gulp.task('default', ['browser-sync', 'watch']);
 
 //******************************
-// additional tasks
+// BUILD PROJECT
 //******************************
 
 gulp.task('removedist', function() { return del.sync('dist'); });
@@ -99,6 +107,9 @@ gulp.task('build',['removedist', 'imgmin', 'sass', 'csslibs', 'scripts' ], funct
      .pipe(gulp.dest('dist/js'));
 });
 
+//******************************
+// DEPLOY PROJECT
+//******************************
 
 gulp.task('deploy', function() {
 

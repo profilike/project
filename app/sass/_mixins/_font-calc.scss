@@ -1,0 +1,14 @@
+@function calculateRem($size) {
+    $remSize: $size / 16px;
+    @return $remSize * 1rem;
+}
+  
+  @mixin font-calc($size) {
+    font-size: $size;
+    font-size: calculateRem($size);
+}
+
+/*usage
+p {
+  @include font-calc(14px)
+}
